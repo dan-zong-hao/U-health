@@ -1,5 +1,5 @@
-# Cov-visualization
-基于Flask+ECharts的新冠疫情的可视化大屏
+# U-health
+基于Flask+ECharts的可视化界面
 
 需要环境mysql数据库
 
