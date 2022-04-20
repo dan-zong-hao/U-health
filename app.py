@@ -1,8 +1,11 @@
-from flask import Flask,request,render_template,jsonify
+from distutils.log import debug
+from flask import Flask,request,render_template,jsonify,redirect,url_for
 from jieba.analyse import extract_tags
-import string
+import json
 import utils
-
+import traceback
+import win32api,win32con
+import pymysql
 app = Flask(__name__)
 
 @app.route("/l1")
@@ -78,36 +81,85 @@ def get_r2_data():
 def hello_world():
     return render_template("main.html")
 
+@app.route('/health')
+def health():
+    return render_template("health.html")
 
+@app.route('/loginhtml')
+def loginhtml1():
+    return render_template("login.html")
 
+@app.route('/registuser',methods=['GET','POST'])
+def getRigistRequest():
+#把用户名和密码注册到数据库中
+    print('正在注册')
+    #连接数据库,此前在数据库中创建数据库flask
+    db = pymysql.connect(host="localhost", user="root", password="6010289csf", database="cov",charset="utf8")
+    #使用cursor()方法获取操作游标
+    cursor = db.cursor()
+    #获取输入框内容
+    data = json.loads(request.get_data())
+    print(data)
+    reg_username=data['reg_username']
+    reg_password=data['reg_password']
+    conf_password=data['conf_password']
+    e_mail=data['e_mail']
+    reg_button = data['reg_button']
+    #判断两次输入密码是否一致，一致则跳转到登录界面，不一致则弹出警告，要求用户重新输入
+    if reg_button[0] == 1 and reg_button[1] == 1 and reg_button[2] == 1 and reg_button[3] == 1:
+        # SQL 插入语句
+        sql = "INSERT INTO user(username, password, e_mail) VALUES ("+repr(reg_username)+", "+repr(reg_password)+", "+repr(e_mail)+")"
+        try:
+            # 执行sql语句
+            cursor.execute(sql)
+            # 提交到数据库执行
+            db.commit()
+             #注册成功之后跳转到登录页面
+            return jsonify({'提示信息':'注册成功，请点击去登录进行登录'})
+        except:
+            #抛出错误信息
+            traceback.print_exc()
+            # 如果发生错误则回滚
+            db.rollback()
+            return jsonify({'提示信息':'注册失败'})
+        # 关闭数据库连接
+        db.close()
+    elif reg_button[0] == 0 or reg_button[1] == 0 or reg_button[2] == 0 or reg_button[3] == 0:
+        return jsonify({'提示信息':"注册信息填写错误"})
 
-@app.route('/ajaxtest',methods=["post"])
-def hello_world4():
-    name = request.values.get("name")
-    return f"你好 {name}，服务器收到了ajax请求"
+# 获取登录参数及处理
+@app.route('/login',methods=['GET','POST'])
+def getLoginRequest():
+    # 查询用户名及密码是否匹配及存在
+    # 连接数据库,此前在数据库中创建数据库TESTDB
+    db = pymysql.connect(host="localhost", user="root", password="6010289csf", database="cov",charset="utf8")
+    # 使用cursor()方法获取操作游标
+    cursor = db.cursor()
+    data = json.loads(request.get_data())
+    print(data)
+    data1 = request.values
+    print(data1)
+    # SQL 查询语句
+    sql = "select * from user where username=" + repr(data['username']) + " and password=" + repr(data['password']) + ""
+    try:
+        # 执行sql语句
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        print(len(results))
+        if len(results) == 1:
+            print("成功登录")
+            return jsonify({"提示信息":"登陆成功"})       #返回需要跳转的页面或需要显示的字符串
 
-
-@app.route('/xyz')
-def hello_world3():
-    return render_template("a.html")
-
-@app.route('/denglu')
-def hello_world2():
-    name = request.values.get("name")
-    pwd = request.values.get("pwd")
-
-    return f'name={name},pwd={pwd}'
-
-@app.route("/login")
-def hello_world1():
-    id = request.values.get("id")
-    return f"""
-<form action="/denglu">
-    <p>账号：<input name="name" value={id}></p>
-    <p>密码：<input name="pwd" ></p>
-    <p><input type="submit" ></p>
-</form>
-    """
+        else:
+            return jsonify({'提示信息':'用户名或密码不正确'})
+        # 提交到数据库执行
+        db.commit()
+    except:
+        # 如果发生错误则回滚
+        traceback.print_exc()
+        db.rollback()
+    # 关闭数据库连接
+    db.close()
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

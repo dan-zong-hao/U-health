@@ -5,6 +5,7 @@ import json
 import pymysql
 import traceback
 import hashlib
+import sys
 # 每日详情数据
 url = "https://api.inews.qq.com/newsqa/v1/query/inner/publish/modules/list?modules=diseaseh5Shelf"
 res = requests.post(url)
@@ -167,8 +168,8 @@ def update_history():
         close_conn(conn, cursor)
 
 
-update_history()
-update_details()
+# update_history()
+# update_details()
 
 
 url = "http://103.66.32.242:8005/zwfwMovePortal/interface/interfaceJson"
@@ -339,4 +340,23 @@ def update_risk_area():
         close_conn(conn, cursor)
 
 
-update_risk_area()
+# update_risk_area()
+if __name__=="__main__":
+    l = len(sys.argv)
+    if l == 1:
+        s = """
+         请输入参数
+         参数说明：
+         up_his 更新历史数据
+         up_risk 更新中高风险
+         up_det 更新详细表
+        """
+        print(s)
+    else:
+        order = sys.argv[1]
+        if order == "up_his":
+            update_history()
+        elif order == "up_risk":
+            update_risk_area()
+        elif order == "up_det":
+            update_details()
