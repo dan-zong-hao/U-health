@@ -1,0 +1,371 @@
+body {
+  margin: 0;
+  background: #2B303B;
+}
+
+#nav {
+  position: absolute;
+  width: 30%;
+  height: 8%;
+  top: 0;
+  left: 0%;
+  background: #2B303B;
+}
+#title {
+  position: absolute;
+  width: 40%;
+  height: 10%;
+
+  display: flex;
+  align-items: center;
+  top: 0;
+  left: 30%;
+  background: #2B303B;
+  color: white;
+  font-size: 40px;
+  justify-content: center;
+}
+
+#tim {
+  position: absolute;
+  /* width: 30%; */
+  height: 10%;
+  right: 2%;
+  top: 5%;
+  color: white;
+  font-size: 16px;
+}
+
+#c1 {
+  position: absolute;
+  width: 40%;
+  height: 25%;
+  top: 10%;
+  left: 30%;
+  color: white;
+  /* background: #777777; */
+}
+
+.num {
+  width: 25%;
+  float: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: gold;
+  font-size: 20px;
+  /*margin-top: 20px;*/
+}
+
+.txt {
+  width: 25%;
+  float: left;
+  font-family: "幼圆";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.txt h2 {
+  margin: 0;
+}
+
+#c2 {
+  position: absolute;
+  width: 40%;
+  height: 65%;
+  top: 35%;
+  left: 30%;
+  background: #888888;
+}
+
+#l1 {
+  position: absolute;
+  width: 30%;
+  height: 47%;
+  top: 10%;
+  left: 0%;
+  background: #666666;
+}
+
+#l2 {
+  position: absolute;
+  width: 30%;
+  height: 45%;
+  top: 55%;
+  left: 0%;
+  background: #2B303B;
+}
+.high_risk {
+  color: red;
+}
+.middle_risk {
+  color: yellow;
+}
+#risk_wrapper {
+  margin-top: 2.5%;
+  overflow: hidden;
+  height: 80%;
+  text-align: center;
+}
+#l2 .title {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding-left: 5px;
+}
+#l2 .ts {
+  color: white;
+  font-size: 14px;
+  text-align: right;
+}
+#l2 ul {
+  list-style: none;
+}
+#l2 li {
+  color: white;
+  text-align: justify;
+  font-size: 12px;
+}
+
+#r1 {
+  position: absolute;
+  width: 30%;
+  height: 45%;
+  top: 10%;
+  right: 0%;
+  background: #666666;
+}
+
+#r2 {
+  position: absolute;
+  width: 30%;
+  height: 45%;
+  top: 55%;
+  right: 0%;
+  background: #777;
+}
+/*卡片的样式定义*/
+.card {
+  width: 25%;
+  float: left;
+  display: flex;
+}
+.container {
+  width: 153.6px;
+  height: 190px;
+  border-radius: 10px;
+  background-color: rgb(35, 35, 35);
+  position: relative;
+  overflow: hidden;
+}
+.text {
+  position: absolute;
+  color: #333;
+  font-size: 70px;
+  bottom: 16.10625px;
+  left: 11px;
+  font-weight: 200;
+}
+.circle1 {
+  position: absolute;
+  width: 118.2px;
+  height: 118.2px;
+  border-radius: 50%;
+  background-color: rgb(154, 218, 43);
+  top: -30px;
+  right: -50px;
+  transition: width 0.4s, height 0.4s, top 0.4s, right 0.4s;
+}
+.circle2 {
+  position: absolute;
+  width: 118.2px;
+  height: 118.2px;
+  border-radius: 50%;
+  background-color: rgb(48, 48, 238);
+  top: -50px;
+  right: 30px;
+  transition: width 0.4s, height 0.4s, top 0.4s, right 0.4s;
+}
+.circle3 {
+  position: absolute;
+  width: 118.2px;
+  height: 118.2px;
+  border-radius: 50%;
+  background-color: rgb(219, 73, 63);
+  top: 60px;
+  right: 40px;
+  transition: width 0.4s, height 0.4s, top 0.4s, right 0.4s;
+}
+.circle4 {
+  position: absolute;
+  width: 118.2px;
+  height: 118.2px;
+  border-radius: 50%;
+  background-color: rgb(152, 20, 240);
+  top: -20px;
+  right: 70px;
+  transition: width 0.4s, height 0.4s, top 0.4s, right 0.4s;
+}
+.img {
+  position: relative;
+  top: 0;
+  transition: top 0.4s ease-out;
+}
+.img img {
+  width: 105px;
+  position: absolute;
+  top: 80px;
+  left: 27px;
+}
+.container h3 {
+  position: absolute;
+  bottom: 90px;
+  left: 53%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 15px;
+  letter-spacing: 0px;
+  transition: bottom 0.5s ease-out;
+}
+.num1 h1 {
+  opacity: 0;
+  position: absolute;
+  bottom: 47px;
+  left: 53%;
+  transform: translateX(-50%);
+  color: gold;
+  font-size: 35px;
+  letter-spacing: 0px;
+  transition: opacity 0.4s;
+}
+.a {
+  /* 这边先把透明度注释掉，方便调整样式 */
+  opacity: 0;
+  color: #fff;
+}
+.a {
+  width: 60px;
+  height: 20px;
+  position: relative;
+  bottom: -150px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: bottom 0.4s, opacity 0.4s;
+}
+.a a {
+  text-decoration: none;
+  font-size: 10px;
+  color: #000;
+}
+/* 现在给卡片设计hover动画 */
+.container:hover .circle1 {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background-color: rgb(154, 218, 43);
+  top: -90px;
+  right: -100px;
+  transition: width 0.4s, height 0.4s, top 0.4s, right 0.4s;
+}
+.container:hover .circle2 {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background-color: rgb(48, 48, 238);
+  top: -40px;
+  right: 50px;
+  transition: width 0.4s, height 0.4s, top 0.4s, right 0.4s;
+}
+.container:hover .circle3 {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background-color: rgb(219, 73, 63);
+  top: -90px;
+  right: -100px;
+  transition: width 0.4s, height 0.4s, top 0.4s, right 0.4s;
+}
+.container:hover .circle4 {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background-color: rgb(152, 20, 240);
+  top: 50px;
+  right: -100px;
+  transition: width 0.4s, height 0.4s, top 0.4s, right 0.4s;
+}
+.container:hover .img {
+  position: relative;
+  top: -50px;
+  transition: top 0.4s ease-out;
+}
+
+.container:hover h3 {
+  bottom: 160px;
+  transition: bottom 0.4s;
+}
+.container:hover .num1 h1 {
+  opacity: 1;
+  transition: opacity 0.4s;
+}
+.container:hover .a {
+  width: 60px;
+  height: 20px;
+  position: relative;
+  bottom: -150px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 5px;
+  background-color: #fff;
+  display: flex;
+  opacity: 1;
+  justify-content: center;
+  align-items: center;
+  transition: bottom 0.4s 0.4s, opacity 0.4s 0.4s;
+}
+.a {
+  cursor: pointer;
+}
+/*
+此处是设置自动匹配横屏，以适应手机显示 容器使用下面定义的 id: gyroContain
+*/
+@media screen and (orientation: portrait) {
+  html {
+    width: 100vmin;
+    height: 100vmax; /*高度比宽度大*/
+  }
+  body {
+    width: 100vmin;
+    height: 100vmax;
+  }
+  #gyroContain {
+    width: 100vmax;
+    height: 100vmin;
+    transform-origin: top left;
+    transform: rotate(90deg) translate(0, -100vmin);
+  }
+}
+@media screen and (orientation: landscape) {
+  html {
+    width: 100vmax;
+    height: 100vmin;
+  }
+  body {
+    width: 100vmax;
+    height: 100vmin;
+  }
+  #gyroContain {
+    width: 100vmax;
+    height: 100vmin;
+  }
+}
